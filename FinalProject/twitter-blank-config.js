@@ -4,9 +4,9 @@
  */
 
 const Twitter = {
-    CONSUMER_KEY: 'c4f1fQrV6LDRI1zIIGP7Lu1LN ',
-    CONSUMER_SECRET: 'Gu2DyAYuGHdbsgkFLInTKqEkWyPDLcFpQrvufNXhSBbbe6uRgm',
-    OWNER_ID: '622513053',
+    CONSUMER_KEY: '',
+    CONSUMER_SECRET: '',
+    OWNER_ID: '',
     CALLBACK_URL: 'http://localhost:3000/auth/callback',
     REQ_TOKEN_URL: 'https://api.twitter.com/oauth/request_token',
     AUTHORIZE_URL: 'https://api.twitter.com/oauth/authorize',

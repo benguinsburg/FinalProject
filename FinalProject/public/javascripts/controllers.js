@@ -91,13 +91,51 @@ angular.module('cs411', ['ngRoute', 'ngCookies'])
                 )
         }
 
+      /*  $scope.getAuth = function () {
+            const request = {
+                method: 'get',
+                url: 'http://localhost:3000/api/db/auth'
+            }
+            $http.request(request)
+                .then(function (err, response) {
+                    if (err) {
+                        $scope.authorized = false
+                    }
+
+                    else {
+                        $scope.authorized = true
+                    }
+                })
+
+*/
         $scope.initApp = function () {
+            console.log("got into initApp")
+            //gets Trump tweets with Twitter API, puts in mongoose db, runs sentiment analysis with
+            //Dandelion API, then prints result on homepage
+            $http.get('api/fetch')
+                .then(function (response) {
+                    let sentiment = response
+                })
+            $scope.mood = sentiment
+
+            /*$scope.mood = function () {
+                $http.get('api/fetch')
+                    .then(function (response) {
+                        return response
+                    })
+                $http.get('api/calculate')
+                    .then(function(response) {
+                        return response
+                    })
+            }*/
+
             $scope.buttonState = "create"
             $scope.h2message = "Add user"
             $scope.buttonMessage = "Add User"
             $scope.authorized = false
             $scope.showLogin = false
             $scope.getUsers()
+//            $scope.getAuth()
             //Grab cookies if present
             let authCookie = $cookies.get('authStatus')
             $scope.authorized = !!authCookie
@@ -195,6 +233,10 @@ angular.module('cs411', ['ngRoute', 'ngCookies'])
         $scope.authorized = !!authStatus
 
     })
+    .controller('BUController', function ($scope) {
+$scope.message = "You MUSTgive money to the alumni fund!"
+        }
+    )
 
 
     //This controller handles toggling the display of details in the user list

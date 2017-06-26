@@ -1,0 +1,11 @@
+html
+    body
+        p The hottest repos on GitHub in #{city.name}, where it is currently #{city.temperature}C
+        table
+            tr
+                td Repo
+                td Description
+            each repo in result
+                tr
+                td= repo.fullName
+                td= repo.description

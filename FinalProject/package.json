@@ -6,6 +6,8 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.4.1",
+    "async-waterfall": "^0.1.5",
     "body-parser": "~1.13.2",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
@@ -26,6 +28,7 @@
     "passport-twitter": "^1.0.4",
     "pug": "^2.0.0-rc.2",
     "request": "^2.69.0",
+    "request-promise-lite": "^0.8.1",
     "serve-favicon": "~2.3.0"
   }
 }

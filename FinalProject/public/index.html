@@ -19,6 +19,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-cookies.js"></script>
 
 
+
     <!--Controllers for this page/app -->
     <script src="javascripts/controllers.js"></script>
     <!-- Local styles -->
@@ -29,33 +30,10 @@
 <body ng-app="cs411">
 <div ng-controller="cs411ctrl" ng-init="initApp()">
     <span class="largeText">  Donald Trump Anger Calculator</span>
-    <h2>{{h2message}} {{name}}</h2>
-    <div ng-show="authorized">
-        
-        <!--
-        <form class="form-inline" name="inputForm">
+    <h2>How happy is Donald Trump this week?</h2>
+    <div>
+        {{mood}}
 
-            <div class="form-group">
-                <label class="sr-only" for="formName">Email address</label>
-                <input type="text" class="form-control" id="formName" placeholder="Enter name" ng-model="name" required>
-            </div>
-
-            <div class="form-group">
-                <label class="sr-only" for="formUID">Email address</label>
-                <input type="text" class="form-control" id="formUID" placeholder="Enter UID" ng-model="UID" required>
-            </div>
-
-            <div class="form-group">
-                <label class="sr-only" for="formDepartment">Password</label>
-                <input type="text" class="form-control" id="formDepartment" placeholder="Enter Department"
-                       ng-model="department" required>
-                <input type="hidden" value="{{user._id}}">
-            </div>
-
-            <button type="submit" class="btn btn-primary" ng-disabled="inputForm.$invalid" ng-click="createUser()">
-                {{buttonMessage}}
-            </button>
-        </form>
         <br/>
         <div ng-hide="authorized">
             <br/>
@@ -73,7 +51,6 @@
         <div ng-show="authorized">
             <button class="btn btn-sm" ng-click="logout()">Log out</button>
         </div>
-        -->
     </div>
     <div class="col-xs-12" style="height:30px;"></div>
     <div class="well col-md-6">
@@ -92,12 +69,12 @@
             </li>
         </ul>
     </div>
+    <!-- A couple of links to fire off the partials (components) -->
+    <br/>
+    <a href = "/#about">About the app</a>
+    <!-- ng-view defines the location for partials -->
+    <div ng-view></div>
 </div>
-<!-- A couple of links to fire off the partials (components) -->
-<br/>
-<a href = "/#about">About the app</a>
-<!-- ng-view defines the location for partials -->
-<div ng-view></div>
 
 </body>
 </html>
