@@ -207,7 +207,7 @@ angular.module('cs411', ['ngRoute', 'ngCookies'])
             }
             $http(request)
                 .then(function (response) {
-                    $scope.moodWord = "blah"//response.data
+                    $scope.moodWord = response.data
                 })
         }
 

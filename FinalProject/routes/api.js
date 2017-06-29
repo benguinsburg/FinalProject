@@ -92,6 +92,7 @@ router.route('/fetch') //get the tweets, put them into db, send to Dandelion API
 const getTweets = function (cb) {
     console.log("getting tweets...")
 
+    //gets token for application session
     return new Promise(function (resolve, reject) {
         var oauth2 = new OAuth2(twitterConfig.CONSUMER_KEY, twitterConfig.CONSUMER_SECRET, 'https://api.twitter.com/', null, 'oauth2/token', null);
         oauth2.getOAuthAccessToken('', {
@@ -101,7 +102,7 @@ const getTweets = function (cb) {
 
             var options = {
                 hostname: 'api.twitter.com',
-                path: '/1.1/search/tweets.json?q=from%3ArealDonaldTrump&count=3',
+                path: '/1.1/search/tweets.json?q=from%3ArealDonaldTrump&count=100',
                 headers: {
                     Authorization: 'Bearer ' + access_token
                 }
@@ -174,7 +175,7 @@ const getSentiment = function (tweets, cb) {
 
         const token = dandelionConfig.TOKEN
 
-        //queries the Dandelion API sentiment extraction for each tweet in 'data', called from sentimentPromises
+        //queries the Dandelion API sentiment extraction for each tweet, called from sentimentPromises
         let calcSentiment = function (tweet) {
             var request = require("request");
             let options = {
@@ -208,7 +209,7 @@ const getSentiment = function (tweets, cb) {
             })
         }
 
-        //maps all statuses in "data" to calcSentiment with promises, then calls back with average of collected values
+        //maps all statuses in "tweets" to calcSentiment with promises, then calls back with average of collected values
         let sentimentPromises = tweets.map(calcSentiment)
 
         Promise.all(sentimentPromises)
