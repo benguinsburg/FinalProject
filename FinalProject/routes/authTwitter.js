@@ -21,6 +21,11 @@ const passportOptions = {
     callbackURL: twitterConfig.CALLBACK_URL
 }
 
+let my_oauth_token
+let my_oauth_verifier
+
+
+
 /*
  Once authenticated, Twitter will pass back oauth tokens and the user's Twitter profile,
  which we will use as a key in the database. Passport uses the Twitter IDfrom the

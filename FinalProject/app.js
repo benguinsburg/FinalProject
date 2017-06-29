@@ -11,8 +11,6 @@ const bodyParser = require('body-parser')
 const session = require('express-session')
 const passport = require('passport')
 
-const Twitter = require('twitter-node-client').Twitter;
-
 //flash is used with passport to pop up messages
 const flash = require('connect-flash')
 //and flash requires session. We'll also want passport-session.

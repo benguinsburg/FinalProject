@@ -109,26 +109,8 @@ angular.module('cs411', ['ngRoute', 'ngCookies'])
 
 */
         $scope.initApp = function () {
-            console.log("got into initApp")
-            //gets Trump tweets with Twitter API, puts in mongoose db, runs sentiment analysis with
-            //Dandelion API, then prints result on homepage
-            $http.get('api/fetch')
-                .then(function (response) {
-                    let sentiment = response
-                })
-            $scope.mood = sentiment
-
-            /*$scope.mood = function () {
-                $http.get('api/fetch')
-                    .then(function (response) {
-                        return response
-                    })
-                $http.get('api/calculate')
-                    .then(function(response) {
-                        return response
-                    })
-            }*/
-
+            $scope.mood = "0"
+            $scope.moodWord = ""
             $scope.buttonState = "create"
             $scope.h2message = "Add user"
             $scope.buttonMessage = "Add User"
@@ -202,7 +184,31 @@ angular.module('cs411', ['ngRoute', 'ngCookies'])
             //Total hack, this:
             $scope.authorized = true
             window.location.replace(openUrl)
+        }
 
+        //gets Trump tweets with Twitter API, puts in mongoose db, runs sentiment analysis with
+        //Dandelion API, then prints result on homepage
+        $scope.doSentimentAnalysis = function() {
+            $http.get('api/fetch')
+                .then(function (response) {
+                    $scope.mood = (100 * response.data)
+                })
+        }
+
+        $scope.getWord = function () {
+            const request = {
+                method: 'post',
+                url: '/api/word',
+                data: {
+                    mood: $scope.mood,
+                    username: $scope.username,
+                    password: $scope.password
+                }
+            }
+            $http(request)
+                .then(function (response) {
+                    $scope.moodWord = "blah"//response.data
+                })
         }
 
     })

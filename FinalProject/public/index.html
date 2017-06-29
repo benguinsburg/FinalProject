@@ -30,11 +30,19 @@
 <body ng-app="cs411">
 <div ng-controller="cs411ctrl" ng-init="initApp()">
     <span class="largeText">  Donald Trump Anger Calculator</span>
-    <h2>How happy is Donald Trump this week?</h2>
     <div>
-        {{mood}}
+        We will tell you how happy Donald Trump is based off of his last 100 tweets    (scale: -100 to 100)
 
-        <br/>
+        <div ng-show="authorized">
+            <br/>
+            <h2>{{mood}}%</h2>
+            {{moodWord}}
+            <br/>
+            <br/>
+            <button type="submit" class="btn btn-primary" ng-click="doSentimentAnalysis()">Calculate</button>
+            <button type="submit" class="btn btn-primary" ng-click="getWord()">Describe</button>
+        </div>
+
         <div ng-hide="authorized">
             <br/>
             <button type="submit" class="btn btn-primary" ng-click="doTwitterAuth()">Log in with Twitter</button>
@@ -50,6 +58,7 @@
         <br/>
         <div ng-show="authorized">
             <button class="btn btn-sm" ng-click="logout()">Log out</button>
+
         </div>
     </div>
     <div class="col-xs-12" style="height:30px;"></div>
